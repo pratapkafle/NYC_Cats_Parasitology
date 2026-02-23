@@ -23,11 +23,17 @@
 if(!require(MASS)) install.packages("MASS")
 library(MASS)
 
+if(!require(here)) install.packages("here")
+library(here)
+
 # ==============================================================================
 # 2. DATA LOADING AND PREPARATION
 # ==============================================================================
 # Load the dataset. We treat empty strings "", "NA", and single spaces " " as missing data.
-df <- read.csv("dataset1.csv", na.strings = c("", "NA", " "))
+df <- read.csv(
+  here("Data", "clean", "dataset1.csv"),
+  na.strings = c("", "NA", " ")
+)
 
 # ------------------------------------------------------------------------------
 # 2.1 DEFINE INFECTION STATUS (BINARY OUTCOMES)
