@@ -122,19 +122,6 @@ To inspect package versions:
 renv::status()
 ```
 
-## Citation
-
-If you use this repository, please cite:  
-Kafle P.  
-Reproducible Analysis of Zoonotic Endoparasites in Free-Roaming Cats (NYC).  
-GitHub Repository.  
-(You may optionally archive with Zenodo for DOI minting.)
-
-## Author
-
-Pratap Kafle  
-Veterinary Parasitology & One Health Research  
-
 ## Reproducibility Statement (For Manuscript Use)
 
 All statistical analyses were conducted in R.  
