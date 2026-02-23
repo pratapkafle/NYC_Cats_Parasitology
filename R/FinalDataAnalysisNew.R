@@ -20,11 +20,26 @@
 # ==============================================================================
 # We use standard libraries to ensure robust statistical methods.
 # MASS: Required for the Negative Binomial GLM (for overdispersed egg counts).
-if(!require(MASS)) install.packages("MASS")
-library(MASS)
 
-if(!require(here)) install.packages("here")
-library(here)
+required_packages <- c("MASS", "here", "dplyr", "broom", "gt")
+
+for (pkg in required_packages) {
+  if (!require(pkg, character.only = TRUE)) {
+    install.packages(pkg)
+    library(pkg, character.only = TRUE)
+  }
+}
+
+output_tables  <- here("output", "tables")
+output_figures <- here("output", "figures")
+
+if (!dir.exists(output_tables)) {
+  dir.create(output_tables, recursive = TRUE)
+}
+
+if (!dir.exists(output_figures)) {
+  dir.create(output_figures, recursive = TRUE)
+}
 
 # ==============================================================================
 # 2. DATA LOADING AND PREPARATION
@@ -316,8 +331,11 @@ print(table2)
 # ==============================================================================
 # 5. EXPORT TO CSV
 # ==============================================================================
-write.csv(table1, "Table1_Parasite_Prevalence.csv", row.names = FALSE)
-write.csv(table2, "Table2_Demographics_Burden.csv", row.names = FALSE)
+write.csv(table1,
+          file = file.path(output_tables, "Table1.csv"),
+          row.names = FALSE)
 
-cat("\nAnalysis Complete. Files 'Table1_Parasite_Prevalence.csv' and 'Table2_Demographics_Burden.csv' generated.\n")
+write.csv(table2,
+          file = file.path(output_tables, "Table2.csv"),
+          row.names = FALSE)
 
